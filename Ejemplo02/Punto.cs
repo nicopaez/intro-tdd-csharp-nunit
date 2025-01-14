@@ -5,15 +5,20 @@ namespace Ejemplo02;
 public class Punto(int x, int y)
 {
     public int X { get; } = x;
-    
     public int Y { get; } = y;
-    public bool EsIgualA(Punto otroPunto)
+
+    public bool EsIgual(Punto otroPunto)
     {
-        return X == otroPunto.X && Y == otroPunto.Y;
+        if (this.Equals(otroPunto))
+        {
+            return true;
+        }
+
+        return this.X == otroPunto.X && this.Y == otroPunto.Y;
     }
 
     public double Modulo()
     {
-        return Math.Round(Math.Sqrt(X*X + Y*Y), 1);
+        return Math.Round(Math.Sqrt((this.X * this.X) + (this.Y * this.Y)), 1);
     }
 }

@@ -2,60 +2,77 @@ namespace Ejemplo02;
 
 public class PuntoTest
 {
+
     [Test]
     public void SeCreaConXeY()
     {
         const int x = 1;
         const int y = 1;
-        var unPunto = new Punto(x, y);
+        var punto = new Punto(x, y);
         Assert.Multiple(() =>
         {
-            Assert.That(unPunto.X, Is.EqualTo(x));
-            Assert.That(unPunto.Y, Is.EqualTo(y));
+            Assert.That(punto.X, Is.EqualTo(x));
+            Assert.That(punto.Y, Is.EqualTo(y));
         });
     }
 
     [Test]
-    public void EsIgualSiTienenMismosValores()
+    public void EsIgualAsimismo()
     {
         var unPunto = new Punto(1, 1);
-        var otroPunto = new Punto(1, 1);
-        Assert.That(unPunto.EsIgualA(otroPunto));
+        var esIgual = unPunto.EsIgual(unPunto);
+        Assert.That(esIgual, Is.True);
     }
     
     [Test]
-    public void NoEsIgualSiNoTienenMismosValores()
+    public void EsIgualSiTieneLosMismosValores()
     {
-        var unPunto = new Punto(1, 2);
-        var otroPunto = new Punto(2, 1);
-        Assert.That(!unPunto.EsIgualA(otroPunto));
+        const int x = 1;
+        const int y = 1;
+        var unPunto = new Punto(x, y);
+        var otroPunto = new Punto(x, y);
+        var esIgual = unPunto.EsIgual(otroPunto);
+        Assert.That(esIgual, Is.True);
     }
     
     [Test]
-    public void ElModuloDe1_0Es1()
+    public void NoEsIgualSiNoTieneLosMismosValores()
+    {
+        var unPunto = new Punto(1, 1);
+        var otroPunto = new Punto(1, 2);
+        var esIgual = unPunto.EsIgual(otroPunto);
+        Assert.That(esIgual, Is.False);
+    }
+    
+    [Test]
+    public void ModuloDelOrigen()
+    {
+        var unPunto = new Punto(0, 0);
+        var modulo = unPunto.Modulo();
+        Assert.That(modulo, Is.EqualTo(0.0));
+    }
+    
+    [Test]
+    public void ModuloDelPuntoCanonico()
     {
         var unPunto = new Punto(1, 0);
-        Assert.That(unPunto.Modulo(), Is.EqualTo(1.0));
+        var modulo = unPunto.Modulo();
+        Assert.That(modulo, Is.EqualTo(1.0));
     }
     
     [Test]
-    public void ElModuloDe0_2Es2()
-    {
-        var unPunto = new Punto(0, 2);
-        Assert.That(unPunto.Modulo(), Is.EqualTo(2.0));
-    }
-
-    [Test]
-    public void ElModuloDe4_3Es5()
+    public void ModuloDeUnPuntoQueDaEntero()
     {
         var unPunto = new Punto(4, 3);
-        Assert.That(unPunto.Modulo(), Is.EqualTo(5.0));
+        var modulo = unPunto.Modulo();
+        Assert.That(modulo, Is.EqualTo(5.0));
     }
-    
+   
     [Test]
-    public void ElModuloDe2_1UnoEs2Coma2()
+    public void ModuloDeUnPuntoQueNoDaEntero()
     {
-        var unPunto = new Punto(2, 1);
-        Assert.That(unPunto.Modulo(), Is.EqualTo(2.2));
+        var unPunto = new Punto(1, 1);
+        var modulo = unPunto.Modulo();
+        Assert.That(modulo, Is.EqualTo(1.4));
     }
 }
