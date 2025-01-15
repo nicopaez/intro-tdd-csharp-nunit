@@ -23,9 +23,10 @@ Escenarios:
 5. acreditar: un monto positivo > ok
 6. acreditar: monto negativo > ok
 > refactor de los tests para agruparlos
-7. debitar: monto positivo
-8. debitar: monto negativo
-9. debitar: más allá del saldo
-10. historial: cuando es creada (cero transacciones)
-11. historial: cuando hay 1 transacción de debito
-12. historial: cuando hay varias transaccion de debito y credito
+7. debitar: monto positivo > ok
+8. debitar: monto negativo > ok
+9. debitar: más allá del saldo > ok
+10. historial: cuando es creada (cero transacciones) > ok
+11. historial: cuando hay 1 transacción de credito > ok
+12. historial: cuando hay varias transaccion de debito y credito > ok
+13. modelo transaccion: tiene el monto > ok
