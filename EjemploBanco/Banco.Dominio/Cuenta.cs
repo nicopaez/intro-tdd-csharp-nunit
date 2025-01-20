@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Banco.Dominio;
+﻿namespace Banco.Dominio;
 
 public class Cuenta
 {

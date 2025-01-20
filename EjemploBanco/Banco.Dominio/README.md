@@ -1,32 +1,34 @@
-Ejemplo03: Cuenta Bancaria
+Banco
+=====
 
-Reglas:
+Funcionalidades:
+* Crear cuenta
+* TransferirDinero
+* ConsultarTransacciones
 
-1. Se crea indicando alias
-2. Al crearse el saldo es cero
-3. Acreditar incremental el saldo
-4. Debitar decrementa el saldo
-5. No puede debitar más allá del saldo
-6. Debe llevar un historial de transacciones
+Crear Cuenta
+------------
 
-Diseño preliminar
-Cuenta
-Transacción
-AliasNoValidoException
-TransaccionInvalidaException 
-
+Regla: el alias de la cuenta debe ser unico
 Escenarios:
-1. modelo: se crea con alias > ok
-2. modelo: se crea con saldo cero > ok
-3. modelo: creación falla por alias vacío (empty o null) > ok
-4. modelo: creación falla por alias muy largo (mayor a 20) > ok
-5. acreditar: un monto positivo > ok
-6. acreditar: monto negativo > ok
-> refactor de los tests para agruparlos
-7. debitar: monto positivo > ok
-8. debitar: monto negativo > ok
-9. debitar: más allá del saldo > ok
-10. historial: cuando es creada (cero transacciones) > ok
-11. historial: cuando hay 1 transacción de credito > ok
-12. historial: cuando hay varias transaccion de debito y credito > ok
-13. modelo transaccion: tiene el monto > ok
+> * el alias esta disponible
+> * el alias NO esta disponible
+* la cuenta es guardada
+
+Transferir Dinero
+-----------------
+
+Regla: las cuentas deben existir y la cuenta origen debe tener saldo suficiente
+Escenarios:
+* la cuenta origen no existe
+* la cuenta destino no existe
+* la cuenta origen no tiene saldo suficiente
+
+Consultar Transacciones
+-----------------------
+
+Regla: la cuenta debe existir
+Escenarios:
+* la cuenta no existe
+* la cuenta no tiene transacciones
+* la cuenta tiene transacciones
