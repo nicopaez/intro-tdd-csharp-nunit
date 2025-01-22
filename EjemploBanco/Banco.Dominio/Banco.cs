@@ -19,4 +19,32 @@ public class Banco
         this.repositorio.Guardar(cuenta);
         return cuenta;
     }
+
+    public string TransferirDinero(string aliasCuentaOrigen, string aliasCuentaDestino, int monto)
+    {
+        VerificarCuentaExistente(aliasCuentaOrigen);
+        VerificarCuentaExistente(aliasCuentaDestino);
+        var origen = this.repositorio.Get(aliasCuentaOrigen);
+        var destino = this.repositorio.Get(aliasCuentaDestino);
+        var transferencia = new Transferencia(origen, destino, monto);
+        return transferencia.Ejecutar();
+    }
+
+    private void VerificarCuentaExistente(string aliasCuenta)
+    {
+        if (!this.repositorio.ExisteCuentaConAlias(aliasCuenta))
+        {
+            throw new CuentaInexistenteException();
+        }
+    }
+
+    public IReadOnlyList<Transaccion> ConsultarTransacciones(string unAlias)
+    {
+        if (this.repositorio.ExisteCuentaConAlias(unAlias))
+        {
+            return this.repositorio.Get(unAlias).Historial();
+        }
+
+        throw new CuentaInexistenteException();
+    }
 }
